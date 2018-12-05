@@ -1,0 +1,42 @@
+<h1>Eat-Da-Pizza!</h1>
+
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col s6">
+        {{#each pizzas}}
+          {{#unless this.devoured}}
+            <div>
+              <form action="/api/pizzas_db/{{this.id}}" method="POST">
+                <button type="submit" class='pizzaAvailable'> {{this.pizza_type}}</button>
+              </form>
+            </div>
+          {{/unless}}
+        {{/each}}
+      </div>
+
+      <div class="col s6">
+        {{#each pizzas}}
+          {{#if this.devoured}}
+            <div class='pizzaEaten'>
+              <div>
+                {{this.pizza_type}}
+              </div>
+            </div>
+          {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</main>
+
+<h2>Add A pizza type</h2>
+
+<div class="row">
+  <div class="col s12">
+     <form action="/api/pizzas_db" method="POST">
+      <input type="text" id="pizza" name="pizza_type" placeholder="Supa Dupa Pizza">
+      <button type="submit" class="addpizzaButton">Order Pizza</button>
+    </form>
+  </div>
+</div>
